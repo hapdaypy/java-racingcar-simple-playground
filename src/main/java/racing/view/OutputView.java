@@ -12,6 +12,6 @@ public class OutputView {
             return;
         }
         String result = String.join(", ", winnerNames);
-        System.out.println("최종 우승자 : " + result);
+        System.out.println(result + "가 최종 우승했습니다.");
     }
 }
