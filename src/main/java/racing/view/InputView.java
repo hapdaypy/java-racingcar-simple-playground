@@ -8,7 +8,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String inputCarName() {
-        System.out.println(INPUT_CAR_COUNT_MASSAGE);
+        System.out.println(INPUT_CAR_NAME_MASSAGE);
         return scanner.nextLine();
     }
 
