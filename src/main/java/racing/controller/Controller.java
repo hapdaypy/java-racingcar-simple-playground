@@ -3,11 +3,9 @@ package racing.controller;
 import racing.view.InputView;
 import racing.view.OutputView;
 
-import racing.domain.Car;
 import racing.domain.Race;
+import racing.domain.CarManager;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -16,19 +14,12 @@ public class Controller {
         String carNameInput = InputView.inputCarName();
         int trialNumber = InputView.inputTrialNumberCount();
         // [2] 데이터 변환: 문자열 -> 자동차 객체 리스트
-        var cars = createCars(carNameInput); //cars 라는 자동차 객체 배열 생성
+        var cars = CarManager.createCars(carNameInput); //cars 라는 자동차 객체 배열 생성
+        CarManager.Duplicate(cars);
         //[3] 레이씽 경기 시작
         Race.start(cars,trialNumber);
         //[4] 결과 출력
         List<String> winners = Race.getWinners(cars);
         OutputView.printWinners(winners);
-    }
-    private static List<Car> createCars(String input) {
-        String[] names = input.split(",");
-        var cars = new ArrayList<Car>();
-        for (String name : names) {
-            cars.add(new Car(name));
-        }
-        return cars;
     }
 }
