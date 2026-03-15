@@ -3,7 +3,6 @@ package racing.domain;
 import java.util.Random;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import racing.view.OutputView;
 
 public class Race {
@@ -23,8 +22,8 @@ public class Race {
         for (Car car : cars) {
             if (shouldMove()) {
                 car.move();
-                OutputView.printRoundResult(car);
             }
+            OutputView.printRoundResult(car);
         }
     }
     private static boolean shouldMove() {
