@@ -1,4 +1,4 @@
 package racingcar.domain;
 
-public class race {
+public class Race {
 }
