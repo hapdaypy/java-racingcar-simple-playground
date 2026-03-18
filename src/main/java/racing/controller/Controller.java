@@ -15,7 +15,7 @@ public class Controller {
         int trialNumber = InputView.inputTrialNumberCount();
         // [2] 데이터 변환: 문자열 -> 자동차 객체 리스트
         var cars = CarManager.createCars(carNameInput); //cars 라는 자동차 객체 배열 생성
-        CarManager.Duplicate(cars);
+        CarManager.duplicate(cars);
         //[3] 레이씽 경기 시작
         Race.start(cars,trialNumber);
         //[4] 결과 출력

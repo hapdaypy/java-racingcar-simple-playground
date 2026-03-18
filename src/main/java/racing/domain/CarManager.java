@@ -12,7 +12,7 @@ public class CarManager {
         }
         return cars;
     }
-    public static void Duplicate(List<Car> cars){
+    public static void duplicate(List<Car> cars){
         long distinctCount = cars.stream()
                 .map(Car::getName) // Car 객체에서 이름을 추출한다고 가정
                 .distinct()
