@@ -11,6 +11,7 @@ public class Race {
     private static final Random random = new Random();
 
     public static void start(List<Car> cars, int trialCount) {
+        validateTrialCount(trialCount);
         for (int i = 0; i < trialCount; i++) {
             runRound(cars);
             OutputView.println();
@@ -25,6 +26,13 @@ public class Race {
             OutputView.printRoundResult(car);
         }
     }
+
+    public static void  validateTrialCount(int trialCount){
+        if(trialCount <= 0){
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 1회 이상이여야합니다.");
+        }
+    }
+
     private static boolean shouldMove() {
         return random.nextInt(RANDOM_RANGE) >= MOVE_THRESHOLD;
     }
