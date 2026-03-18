@@ -9,7 +9,10 @@ public class InputView {
 
     public static String inputCarName() {
         System.out.println(INPUT_CAR_NAME_MESSAGE);
-        return scanner.nextLine();
+        String carName = scanner.nextLine();
+        validateCarNameFormat(carName);
+
+        return carName;
     }
 
     public static int inputTrialNumberCount() {
@@ -18,15 +21,23 @@ public class InputView {
         return parseTrialCount(input);
     }
 
+    private static void validateCarNameFormat(String input){
+        if(input.isBlank()){
+            throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
+        }
+        if(input.contains(",,")){
+            throw new IllegalArgumentException("[ERROR] 쉼표가 연속으로 입력되었습니다.");
+        }
+        if(input.startsWith(",")||input.endsWith(",")){
+            throw new IllegalArgumentException("[ERROR] 입력값의 시작이나 끝에 쉼표가 있습니다.");
+        }
+    }
     private static int parseTrialCount(String input) {
         try {
-            int count = Integer.parseInt(input);
-            if (count <= 0) {
-                throw new IllegalArgumentException("[ERROR] 시도 횟수는 1 이상이어야 합니다.");
-            }
-            return count;
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 시도 횟수는 숫자여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 시도 횟수는 정수 형의 숫자여야 합니다.");
         }
     }
 }
+
