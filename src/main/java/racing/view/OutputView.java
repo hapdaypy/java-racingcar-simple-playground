@@ -14,4 +14,9 @@ public class OutputView {
         String result = String.join(", ", winnerNames);
         System.out.println(result + "가 최종 우승했습니다.");
     }
+
+    public static void println(){
+        System.out.println();
+    }
+
 }

@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.List;
 import java.util.stream.Collectors;
 import racing.view.OutputView;
-
 public class Race {
     // 경기 실행후 출력하는 메서드
     private static final int RANDOM_RANGE = 10; // 0~9
@@ -14,7 +13,7 @@ public class Race {
     public static void start(List<Car> cars, int trialCount) {
         for (int i = 0; i < trialCount; i++) {
             runRound(cars);
-            System.out.println(); //
+            OutputView.println();
         }
     }
 
