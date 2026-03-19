@@ -32,6 +32,7 @@ public class InputView {
         if(input.startsWith(",")||input.endsWith(",")){
             throw new IllegalArgumentException("[ERROR] 입력값의 시작이나 끝에 쉼표가 있습니다.");
         }
+
     }
     private static int parseTrialCount(String input) {
         try {
