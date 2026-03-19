@@ -2,7 +2,7 @@ package racing.domain;
 
 public class Car {
     private final String name;
-    private int position = 0;
+    private int position;
 
     public Car(String name) {
         validateName(name);
