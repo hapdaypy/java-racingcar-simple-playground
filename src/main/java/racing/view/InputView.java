@@ -25,7 +25,8 @@ public class InputView {
         if(input.isBlank()){
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
-        if(input.contains(",,")){
+        String noSpaceInput = input.replace(" ","");
+        if(noSpaceInput.contains(",,")){
             throw new IllegalArgumentException("[ERROR] 쉼표가 연속으로 입력되었습니다.");
         }
         if(input.startsWith(",")||input.endsWith(",")){
