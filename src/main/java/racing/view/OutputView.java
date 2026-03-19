@@ -4,7 +4,7 @@ import java.util.List;
 
 public class OutputView {
     public static void printRoundResult(Car car) {
-        System.out.println(car.getName() + " : " + car.getPositionVisualized());
+        System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
     }
 
     public static void printWinners(List<String> winnerNames) {

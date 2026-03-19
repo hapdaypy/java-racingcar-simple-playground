@@ -2,12 +2,12 @@ package racing.domain;
 
 public class Car {
     private final String name;
-    private int position  = 0;
+    private int position = 0;
 
-    public Car(String name){
+    public Car(String name) {
         validateName(name);
         this.name = name;
-        this.position =  0;
+        this.position = 0;
     }
 
     private void validateName(String name) {
@@ -40,5 +40,6 @@ public class Car {
     public int getPosition() {
         return position;
     }
+
 
 }
