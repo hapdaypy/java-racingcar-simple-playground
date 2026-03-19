@@ -23,6 +23,13 @@ public class Cars {
             throw new IllegalArgumentException("[ERROR]중복된 자동차 이름이 존재합니다.");
         }
     }
+    public void moveAll(MoveStrategy moveStrategy) {
+        for (Car car : cars) {
+            if (moveStrategy.isMovable()) {
+                car.move();
+            }
+        }
+    }
 
     public List<Car> getCarList(){
         return cars;
