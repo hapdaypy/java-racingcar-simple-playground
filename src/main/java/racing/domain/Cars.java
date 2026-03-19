@@ -30,7 +30,6 @@ public class Cars {
             }
         }
     }
-
     public List<Car> getCarList(){
         return cars;
     }
