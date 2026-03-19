@@ -29,9 +29,6 @@ public class Car {
         this.position++;
     }
 
-    public String getPositionVisualized() {
-        return "-".repeat(position);
-    }
 
     public String getName() {
         return name;
