@@ -3,16 +3,18 @@ package racing.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarManager {
-    public static List<Car> createCars(String input) {
+public class Cars {
+    private final List<Car> cars;
+
+    public Cars(String input) {
         String[] names = input.split(",");
-        var cars = new ArrayList<Car>();
+        this.cars = new ArrayList<>();
         for (String name : names) {
-            cars.add(new Car(name));
+            this.cars.add(new Car(name));
         }
-        return cars;
+        validateDuplicate();
     }
-    public static void duplicate(List<Car> cars){
+    private void validateDuplicate(){
         long distinctCount = cars.stream()
                 .map(Car::getName) // Car 객체에서 이름을 추출한다고 가정
                 .distinct()
@@ -20,5 +22,9 @@ public class CarManager {
         if (distinctCount != cars.size()) {
             throw new IllegalArgumentException("[ERROR]중복된 자동차 이름이 존재합니다.");
         }
+    }
+
+    public List<Car> getCarList(){
+        return cars;
     }
 }
