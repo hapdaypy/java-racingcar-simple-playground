@@ -24,10 +24,8 @@ class RaceTest {
         Cars cars = new Cars("pobi,woni,jun");
         Race race = new Race(cars, 1);
 
-        // pobi만 전진시키기 위해 익명 클래스 혹은 람다를 사용 (통제된 테스트)
-        race.moveAll(() -> true); // 모두 이동 가능한 상태로 설정
+        race.moveAll(() -> true);
 
-        // 특정 차만 한 번 더 전진시켜 위치 조작 (우승자 검증용)
         cars.getCarList().get(0).move();
 
         List<String> winners = race.getWinners();
@@ -40,7 +38,7 @@ class RaceTest {
         Cars cars = new Cars("pobi,woni,jun");
         Race race = new Race(cars, 1);
 
-        race.moveAll(() -> true); // 3대 모두 1칸 전진. 모두가 공동 우승자.
+        race.moveAll(() -> true);
 
         List<String> winners = race.getWinners();
         assertThat(winners).containsExactly("pobi", "woni", "jun");
