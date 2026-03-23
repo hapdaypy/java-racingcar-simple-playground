@@ -9,6 +9,7 @@ public class Car {
         this.name = name;
         this.position = 0;
     }
+
     private void validateName(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 자동차 이름은 1자 이상이어야 합니다.");
@@ -23,9 +24,11 @@ public class Car {
             throw new IllegalArgumentException("[ERROR] 자동차 이름에 특수문자를 포함할 수 없습니다.");
         }
     }
+
     public void move() {
         this.position++;
     }
+
     public String getName() {
         return name;
     }

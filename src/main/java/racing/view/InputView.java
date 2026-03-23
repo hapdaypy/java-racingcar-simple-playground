@@ -1,4 +1,5 @@
 package racing.view;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -23,19 +24,20 @@ public class InputView {
         return parseTrialCount(input);
     }
 
-    private static void validateCarNameFormat(String input){
-        if(input.isBlank()){
+    private static void validateCarNameFormat(String input) {
+        if (input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
-        String noSpaceInput = input.replace(" ","");
-        if(noSpaceInput.contains(",,")){
+        String noSpaceInput = input.replace(" ", "");
+        if (noSpaceInput.contains(",,")) {
             throw new IllegalArgumentException("[ERROR] 쉼표가 연속으로 입력되었습니다.");
         }
-        if(input.startsWith(",")||input.endsWith(",")){
+        if (input.startsWith(",") || input.endsWith(",")) {
             throw new IllegalArgumentException("[ERROR] 입력값의 시작이나 끝에 쉼표가 있습니다.");
         }
 
     }
+
     private static int parseTrialCount(String input) {
         try {
             return Integer.parseInt(input);
