@@ -39,3 +39,4 @@ class RandomMoveStrategyTest {
         assertThat(moveStrategy.isMovable()).isFalse();
     }
 }
+

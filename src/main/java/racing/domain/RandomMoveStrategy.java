@@ -20,3 +20,4 @@ public class RandomMoveStrategy implements MoveStrategy {
         return random.nextInt(RANDOM_RANGE) >= MOVE_THRESHOLD;
     }
 }
+
