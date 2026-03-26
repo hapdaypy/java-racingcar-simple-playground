@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CarTest {
 
     @Test
-    @DisplayName("자동차는 정상적인 이름으로 생성되어야 한다.")
+    @DisplayName("자동차는 정상적인 이름으로 생성하지 못할경우 예외를 발생시킨다.")
     void create_ValidName() {
         Car car = new Car("pobi");
         assertThat(car.getName()).isEqualTo("pobi");
@@ -27,7 +27,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("자동차가 전진하면 위치가 1 증가한다.")
+    @DisplayName("자동차가 전진하면 위치가 1 로 변하지 않는다면 예외를 발생시킨다..")
     void move() {
         Car car = new Car("pobi");
         car.move();

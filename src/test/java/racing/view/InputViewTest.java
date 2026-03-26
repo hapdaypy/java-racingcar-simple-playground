@@ -24,7 +24,7 @@ class InputViewTest {
     }
 
     @Test
-    @DisplayName("자동차 이름 형식을 검증한다.")
+    @DisplayName("자동차 이름 형식이 올바르지 못하면 예외를 발생시킨다.")
     void validateCarNameFormat_Exception() {
         provideInput("pobi,,woni\n");
         assertThatThrownBy(InputView::inputCarName)

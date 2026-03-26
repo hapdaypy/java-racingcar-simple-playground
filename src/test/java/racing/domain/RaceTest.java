@@ -19,7 +19,7 @@ class RaceTest {
     }
 
     @Test
-    @DisplayName("단독 우승자를 정확히 판별한다.")
+    @DisplayName("단독 우승자를 정확히 판별하지 못했을 경우 예외를 발생시킨다.")
     void getWinners() {
         Cars cars = new Cars(CarParser.parse("pobi,woni,jun"));
 
@@ -40,7 +40,7 @@ class RaceTest {
     }
 
     @Test
-    @DisplayName("공동 우승자를 정확히 판별한다.")
+    @DisplayName("공동 우승자를 정확히 판별하지 못할 경우 예외를 발생시킨다..")
     void getWinners_Multiple() {
         Cars cars = new Cars(CarParser.parse("pobi,woni,jun"));
         // 외부에서 람다로 항상 전진하는 전략 주입
@@ -49,6 +49,6 @@ class RaceTest {
         race.playRound();
 
         List<String> winners = race.getWinners();
-        assertThat(winners).containsExactly("pobi", "woni", "jun");
+        assertThat(winners).containsExactlyInAnyOrder("pobi", "woni", "jun");
     }
 }

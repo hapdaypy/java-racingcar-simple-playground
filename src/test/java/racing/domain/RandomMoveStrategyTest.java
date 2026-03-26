@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RandomMoveStrategyTest {
 
     @Test
-    @DisplayName("생성된 난수가 4 이상이면 참을 반환한다.")
+    @DisplayName("생성된 난수가 4 이상이면 참을 반환하지 못할경우 예외를 발생시킨다.")
     void isMovable_True_WhenRandomIs4OrMore() {
         // 통제된 난수 4를 반환하는 익명 객체 주입
         Random controlledRandom = new Random() {
@@ -25,7 +25,7 @@ class RandomMoveStrategyTest {
     }
 
     @Test
-    @DisplayName("생성된 난수가 3 이하면 거짓을 반환한다.")
+    @DisplayName("생성된 난수가 3 이하면 거짓을 반환하지 못할 경우 예외를 발생시킨다.")
     void isMovable_False_WhenRandomIs3OrLess() {
         // 통제된 난수 3을 반환하는 익명 객체 주입
         Random controlledRandom = new Random() {
