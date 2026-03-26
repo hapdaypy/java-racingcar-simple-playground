@@ -12,7 +12,10 @@ import java.util.List;
 public class Controller {
     public void run() {
         // [1] 자동차 이름 및 시도 횟수 입력 받기
+        OutputView.printInputCarNameMessage();
         String carNameInput = InputView.inputCarName();
+
+        OutputView.printInputTrialCountMessage();
         int trialNumber = InputView.inputTrialNumberCount();
         // [2] 데이터 변환: 문자열 -> 자동차 객체 리스트
         List<Car> carList = CarParser.parse(carNameInput);
