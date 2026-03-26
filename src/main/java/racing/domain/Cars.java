@@ -6,14 +6,11 @@ import java.util.List;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(String input) {
-        String[] names = input.split(",");
-        this.cars = new ArrayList<>();
-        for (String name : names) {
-            this.cars.add(new Car(name));
-        }
+    public Cars(List<Car> cars ) {
+        this.cars = cars;
         validateDuplicate();
     }
+
     private void validateDuplicate(){
         long distinctCount = cars.stream()
                 .map(Car::getName) // Car 객체에서 이름을 추출한다고 가정
