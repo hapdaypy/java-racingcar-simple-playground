@@ -13,20 +13,27 @@ class RaceTest {
     @Test
     @DisplayName("시도 횟수가 0 이하일 경우 예외가 발생한다.")
     void invalidTrialCount_ThrowsException() {
-        Cars cars = new Cars("pobi,woni");
-        assertThatThrownBy(() -> new Race(cars, 0))
+        Cars cars = new Cars(CarParser.parse("pobi,woni"));
+        assertThatThrownBy(() -> new Race(cars, 0, () -> true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    @DisplayName("우승자를 정확히 판별한다.")
+    @DisplayName("단독 우승자를 정확히 판별한다.")
     void getWinners() {
-        Cars cars = new Cars("pobi,woni,jun");
-        Race race = new Race(cars, 1);
+        Cars cars = new Cars(CarParser.parse("pobi,woni,jun"));
 
-        race.moveAll(() -> true);
+        // 상태를 강제 조작하지 않고, 첫 번째 차례(pobi)에만 전진하도록 전략 통제
+        MoveStrategy pobiOnlyStrategy = new MoveStrategy() {
+            private int invokeCount = 0;
+            @Override
+            public boolean isMovable() {
+                return invokeCount++ == 0;
+            }
+        };
 
-        cars.getCarList().get(0).move();
+        Race race = new Race(cars, 1, pobiOnlyStrategy);
+        race.playRound();
 
         List<String> winners = race.getWinners();
         assertThat(winners).containsExactly("pobi");
@@ -35,10 +42,11 @@ class RaceTest {
     @Test
     @DisplayName("공동 우승자를 정확히 판별한다.")
     void getWinners_Multiple() {
-        Cars cars = new Cars("pobi,woni,jun");
-        Race race = new Race(cars, 1);
+        Cars cars = new Cars(CarParser.parse("pobi,woni,jun"));
+        // 외부에서 람다로 항상 전진하는 전략 주입
+        Race race = new Race(cars, 1, () -> true);
 
-        race.moveAll(() -> true);
+        race.playRound();
 
         List<String> winners = race.getWinners();
         assertThat(winners).containsExactly("pobi", "woni", "jun");
