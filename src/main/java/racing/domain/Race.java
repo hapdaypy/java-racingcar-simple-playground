@@ -27,12 +27,7 @@ public class Race {
         if (!hasMoreRounds()) {
             throw new IllegalStateException("[ERROR] 이미 모든 라운드가 종료되었습니다.");
         }
-
-        for (Car car : cars.getCarList()) {
-            if (moveStrategy.isMovable()) {
-                car.move();
-            }
-        }
+        cars.moveAll(moveStrategy);
         currentRound++;
     }
 
