@@ -49,9 +49,8 @@ public class InputView {
     }
 
 
-        public static List<Car> parse(String input){
-            return Arrays.stream(input.split(",")).map(Car::new).collect(Collectors.toList());
-        }
-
+    public static List<Car> parse(String input) {
+        return Arrays.stream(input.split(",")).map(Car::new).collect(Collectors.toList());
+    }
 
 }
