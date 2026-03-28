@@ -29,7 +29,6 @@ public class Controller {
         while (race.hasMoreRounds()) {
             race.playRound();
             OutputView.printRoundResult(cars.getCarList());
-            OutputView.println();
         }
         //[4] 결과 출력
         OutputView.printWinners(race.getWinners());
