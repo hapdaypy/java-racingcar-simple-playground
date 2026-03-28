@@ -1,6 +1,17 @@
 package racing.view;
 
+import racing.domain.Car;
+
 import java.util.Scanner;
+
+
+
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 
 public class InputView {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -36,4 +47,11 @@ public class InputView {
             throw new IllegalArgumentException("[ERROR] 시도 횟수는 정수 형의 숫자여야 합니다.");
         }
     }
+
+
+        public static List<Car> parse(String input){
+            return Arrays.stream(input.split(",")).map(Car::new).collect(Collectors.toList());
+        }
+
+
 }

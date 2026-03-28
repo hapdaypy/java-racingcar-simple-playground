@@ -4,7 +4,6 @@ import racing.view.InputView;
 
 import racing.domain.Cars;
 import racing.domain.Race;
-import racing.domain.CarParser;
 import racing.domain.Car;
 import racing.view.OutputView;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Controller {
         OutputView.printInputTrialCountMessage();
         int trialNumber = InputView.inputTrialNumberCount();
         // [2] 데이터 변환: 문자열 -> 자동차 객체 리스트
-        List<Car> carList = CarParser.parse(carNameInput);
+        List<Car> carList = InputView.parse(carNameInput);
         Cars cars = new Cars(carList);
 
         Race race = new Race(cars,trialNumber,new RandomMoveStrategy());
