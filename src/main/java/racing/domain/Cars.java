@@ -20,9 +20,19 @@ public class Cars {
             throw new IllegalArgumentException("[ERROR] 중복된 자동차 이름이 존재합니다.");
         }
     }
+    public void moveAll(MoveStrategy moveStrategy){
+        for (Car car : cars) {
+            if (moveStrategy.isMovable()) {
+                car.move();
+            }
+        }
+    }
 
     // 불변성 보장: 외부에서 리스트를 수정하지 못하도록 읽기 전용 뷰 반환
     public List<Car> getCarList() {
         return Collections.unmodifiableList(cars);
     }
+
+
+
 }

@@ -48,9 +48,10 @@ public class InputView {
         }
     }
 
-
-    public static List<Car> parse(String input) {
-        return Arrays.stream(input.split(",")).map(Car::new).collect(Collectors.toList());
+    public static List<String> parse(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim) // 양끝 공백 제거
+                .collect(Collectors.toList());
     }
 
 }

@@ -7,6 +7,8 @@ import racing.domain.Race;
 import racing.domain.Car;
 import racing.view.OutputView;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import racing.domain.RandomMoveStrategy;
 
 public class Controller {
@@ -18,8 +20,11 @@ public class Controller {
         OutputView.printInputTrialCountMessage();
         int trialNumber = InputView.inputTrialNumberCount();
         // [2] 데이터 변환: 문자열 -> 자동차 객체 리스트
-        List<Car> carList = InputView.parse(carNameInput);
-        Cars cars = new Cars(carList);
+        List<String> carList = InputView.parse(carNameInput);
+        List<Car> raceCarList = carList.stream()
+                .map(Car::new)
+                .collect(Collectors.toList());
+        Cars cars = new Cars(raceCarList);
 
         Race race = new Race(cars,trialNumber,new RandomMoveStrategy());
         //[3] 레이씽 경기 시작
@@ -29,6 +34,7 @@ public class Controller {
         while (race.hasMoreRounds()) {
             race.playRound();
             OutputView.printRoundResult(cars.getCarList());
+
         }
         //[4] 결과 출력
         OutputView.printWinners(race.getWinners());
