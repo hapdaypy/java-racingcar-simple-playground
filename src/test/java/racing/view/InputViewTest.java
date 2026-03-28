@@ -1,13 +1,11 @@
 package racing.view;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputViewTest {
@@ -24,8 +22,8 @@ class InputViewTest {
     }
 
     @Test
-    @DisplayName("자동차 이름 형식이 올바르지 못하면 예외를 발생시킨다.")
-    void validateCarNameFormat_Exception() {
+
+    void 자동차_이름_형식이_올바르지_못하면_예외를_발생시킨다() {
         provideInput("pobi,,woni\n");
         assertThatThrownBy(InputView::inputCarName)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -33,8 +31,7 @@ class InputViewTest {
     }
 
     @Test
-    @DisplayName("시도 횟수가 숫자가 아니면 예외를 발생시킨다.")
-    void parseTrialCount_Exception() {
+    void 시도_횟수가_숫자가_아니면_예외를_발생시킨다() {
         provideInput("notNumber\n");
         assertThatThrownBy(InputView::inputTrialNumberCount)
                 .isInstanceOf(IllegalArgumentException.class)

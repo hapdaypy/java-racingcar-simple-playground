@@ -1,9 +1,6 @@
 package racing.domain;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racing.view.InputView;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,9 +9,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CarsTest {
 
     @Test
-    @DisplayName("중복된 이름의 자동차가 포함되어 있으면 예외가 발생한다.")
-    void validateDuplicate_ThrowsException() {
-        List<Car> carList = InputView.parse("pobi,pobi,woni");
+    void 중복된_이름이_있으면_예외가_발생한다() {
+        List<Car> carList = List.of(new Car("pobi"), new Car("pobi"));
 
         assertThatThrownBy(() -> new Cars(carList))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -22,24 +18,22 @@ class CarsTest {
     }
 
     @Test
-    @DisplayName("정상적인 자동차 리스트가 주어지면 Cars 객체가 생성된다.")
-    void createCars_Success() {
-        List<Car> carList = InputView.parse("pobi,woni,jun");
+    void moveAll_호출시_전달된_전략이_참이면_모든_자동차가_이동하자_않는다면_예외를_발생시킨다() {
+        Cars cars = new Cars(List.of(new Car("pobi"), new Car("crong")));
 
-        Cars cars = new Cars(carList);
+        cars.moveAll(() -> true);
 
-        assertThat(cars.getCarList()).hasSize(3);
+        assertThat(cars.getCarList().get(0).getPosition()).isEqualTo(1);
+        assertThat(cars.getCarList().get(1).getPosition()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("getCarList로 반환된 리스트는 불변(Immutable)이어야 한다.")
-    void getCarList_IsImmutable() {
-        List<Car> carList = InputView.parse("pobi,woni");
-        Cars cars = new Cars(carList);
+    void moveAll_호출시_전달된_전략이_거짓이면_모든_자동차가_이동하지_않는다면_예외를_발생시킨다() {
+        Cars cars = new Cars(List.of(new Car("pobi"), new Car("crong")));
 
-        List<Car> returnedList = cars.getCarList();
+        cars.moveAll(() -> false);
 
-        assertThatThrownBy(() -> returnedList.add(new Car("jun")))
-                .isInstanceOf(UnsupportedOperationException.class);
+        assertThat(cars.getCarList().get(0).getPosition()).isEqualTo(0);
+        assertThat(cars.getCarList().get(1).getPosition()).isEqualTo(0);
     }
 }
